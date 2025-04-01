@@ -1,7 +1,7 @@
 import {createEntityAdapter, createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store.ts";
-import {fetchUsersApi} from "./userApi.ts";
-import {User, UsersState} from "./user.ts";
+import {createUserApi, fetchUsersApi} from "./userApi.ts";
+import {NewUser, User, UsersState} from "./user.ts";
 import {STATUS} from "../../common/constant/status.ts";
 import {createAppAsyncThunk} from "../../app/withTypes.ts";
 
@@ -19,6 +19,9 @@ const usersSlice = createSlice({
     reducers: {
 
     },
+    selectors: {
+        selectUsers2: (sliceState) => sliceState
+    },
     extraReducers: builder =>  {
         builder
             .addCase(fetchUsers.pending, (state) => {
@@ -30,15 +33,31 @@ const usersSlice = createSlice({
                 state.pagination = action.payload.pagination;
                 state.status = STATUS.IDLE;
             })
+            // .addCase(saveNewUser.fulfilled, usersAdapter.addOne)
     }
 });
 
+/* Thunks */
 export const fetchUsers = createAppAsyncThunk(
     "users/fetchUsers",
     async () => {
-    const response = await fetchUsersApi();
-    return response.data;
-});
+        const response = await fetchUsersApi();
+        return response.data;
+    }
+);
 
-export const { selectAll: selectUsers } = usersAdapter.getSelectors((state: RootState) => state.users);
+export const saveNewUser = createAppAsyncThunk(
+    "users/saveNewUser",
+    async (initialUser: NewUser) => {
+        const response = await createUserApi(initialUser);
+        return response.data;
+    }
+);
+
+/* Selectors */
+export const {
+    selectAll: selectUsers,
+    selectById: selectUserById
+} = usersAdapter.getSelectors((state: RootState) => state.users);
+
 export default usersSlice.reducer;

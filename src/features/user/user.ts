@@ -11,6 +11,14 @@ export interface User {
     createdAt: string
 }
 
+export interface NewUser {
+    nickName: string;
+    password: string;
+    name: string;
+    gender: Gender;
+    hobby: string;
+}
+
 export interface UsersState {
     count: number;
     pagination: Pagination | null;
