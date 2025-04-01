@@ -1,16 +1,16 @@
-import {createAsyncThunk, createEntityAdapter, createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
+import {createEntityAdapter, createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store.ts";
-
-interface User {
-    id: number;
-    name: string;
-}
+import {fetchUsersApi} from "./userApi.ts";
+import {User, UsersState} from "./user.ts";
+import {STATUS} from "../../common/constant/status.ts";
+import {createAppAsyncThunk} from "../../app/withTypes.ts";
 
 const usersAdapter = createEntityAdapter<User>();
 
-const initialState = usersAdapter.getInitialState({
-    status: "idle"
+const initialState = usersAdapter.getInitialState<UsersState>({
+    count: 0,
+    pagination: null,
+    status: STATUS.IDLE
 });
 
 const usersSlice = createSlice({
@@ -22,24 +22,23 @@ const usersSlice = createSlice({
     extraReducers: builder =>  {
         builder
             .addCase(fetchUsers.pending, (state) => {
-                state.status = "loading";
-                console.log("state.status", state.status);
+                state.status = STATUS.LOADING;
             })
             .addCase(fetchUsers.fulfilled, (state, action) => {
-                console.log("action.payload", action.payload);
-                usersAdapter.setAll(state, action.payload);
-                state.status = "idle";
-                console.log("state.entities", state.entities);
-                console.log("state.status", state.status);
+                usersAdapter.setAll(state, action.payload.users);
+                state.count = action.payload.count;
+                state.pagination = action.payload.pagination;
+                state.status = STATUS.IDLE;
             })
     }
 });
 
-export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-    const response = await axios.get("http://localhost:8080/api/users");
-    console.log("response.data", response.data.data.users);
+export const fetchUsers = createAppAsyncThunk(
+    "users/fetchUsers",
+    async () => {
+    const response = await fetchUsersApi();
     return response.data;
-})
+});
 
 export const { selectAll: selectUsers } = usersAdapter.getSelectors((state: RootState) => state.users);
 export default usersSlice.reducer;

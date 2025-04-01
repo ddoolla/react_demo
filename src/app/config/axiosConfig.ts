@@ -1,6 +1,7 @@
 import axios from "axios";
 
-axios.interceptors.response.use(
-    response => response.data.data,
-    error => Promise.reject(error)
-)
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:8080/api',
+});
+
+export default axiosInstance;
