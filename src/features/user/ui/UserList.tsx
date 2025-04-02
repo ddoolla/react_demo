@@ -7,9 +7,9 @@ import {useNavigate} from "react-router-dom";
 const UserList = () => {
     const nav = useNavigate();
     const users = useAppSelector(selectUsers);
-    const loadingStatus = useAppSelector(state => state.users.status)
+    const status = useAppSelector(state => state.users.status)
 
-    if (loadingStatus === STATUS.LOADING) {
+    if (status === STATUS.LOADING) {
         return <div>loading...</div>
     }
 
@@ -19,15 +19,15 @@ const UserList = () => {
 
     return (
         <div>
-            <div>{listItems}</div>
             <div>
                 <button onClick={() => nav("/")}>
                     Home
                 </button>
                 <button onClick={() => nav("/user/form")}>
-                    form
+                    Form
                 </button>
             </div>
+            <div>{listItems}</div>
         </div>
     )
 }

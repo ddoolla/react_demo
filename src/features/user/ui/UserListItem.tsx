@@ -13,7 +13,7 @@ const UserListItem = ({user}: UserListItemProps) => {
             <div>{user.id}</div>
             <div>{user.name}</div>
             <div>
-                <button onClick={() => nav("/user/" + user.id)}>
+                <button onClick={() => nav(`/user/${user.id}`)}>
                     Detail
                 </button>
             </div>

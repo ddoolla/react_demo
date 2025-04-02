@@ -7,7 +7,7 @@ const Home = () => {
         <div>
             <h2>Home</h2>
             <button onClick={() => nav("/user/list")}>
-                사용자 목록
+                User List
             </button>
         </div>
     )

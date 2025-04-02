@@ -1,5 +1,3 @@
-import {Pagination} from "../../common/types/pagination.ts";
-import {Status} from "../../common/constant/status.ts";
 import {Gender} from "../../common/constant/gender.ts";
 
 export interface User {
@@ -17,10 +15,4 @@ export interface NewUser {
     name: string;
     gender: Gender;
     hobby: string;
-}
-
-export interface UsersState {
-    count: number;
-    pagination: Pagination | null;
-    status: Status;
 }

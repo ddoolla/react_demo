@@ -1,5 +1,6 @@
 import {useAppSelector} from "../../../app/withTypes.ts";
 import {selectUserById} from "../userSlice.ts";
+import {STATUS} from "../../../common/constant/status.ts";
 
 interface UserInfoProps {
     id: number;
@@ -7,9 +8,15 @@ interface UserInfoProps {
 
 const UserInfo = ({ id }: UserInfoProps) => {
     const user = useAppSelector(state => selectUserById(state, id));
+    const status = useAppSelector(state => state.users.status)
+
+    if (status === STATUS.LOADING) {
+        return <div>loading...</div>
+    }
+
     return (
         <div>
-            <h2>사용자 정보 상세보기</h2>
+            <h2>User Info</h2>
             <div>
                 <div>id: {user.id}</div>
                 <div>nickName: {user.nickName}</div>
