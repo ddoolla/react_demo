@@ -6,6 +6,11 @@ export const fetchUsersApi = async () => {
     return response.data;
 }
 
+export const fetchUserByIdApi = async (id: number) => {
+    const response = await axiosInstance.get(`/users/${id}`);
+    return response.data;
+}
+
 export const createUserApi = async (initialUser: NewUser) => {
     const response = await axiosInstance.post("/users", initialUser)
     return response.data;

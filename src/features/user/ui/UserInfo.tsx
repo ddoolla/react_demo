@@ -1,6 +1,7 @@
-import {useAppSelector} from "../../../app/withTypes.ts";
-import {selectUserById} from "../userSlice.ts";
+import {useAppDispatch, useAppSelector} from "../../../app/withTypes.ts";
+import {fetchUserById, selectUserById} from "../userSlice.ts";
 import {STATUS} from "../../../common/constant/status.ts";
+import {useEffect} from "react";
 
 interface UserInfoProps {
     id: number;
@@ -9,6 +10,11 @@ interface UserInfoProps {
 const UserInfo = ({ id }: UserInfoProps) => {
     const user = useAppSelector(state => selectUserById(state, id));
     const status = useAppSelector(state => state.users.status)
+
+    // const dispatch = useAppDispatch();
+    // useEffect(() => {
+    //     dispatch(fetchUserById(id));
+    // }, [dispatch]);
 
     if (status === STATUS.LOADING) {
         return <div>loading...</div>

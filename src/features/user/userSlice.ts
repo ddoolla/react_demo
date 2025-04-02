@@ -1,6 +1,6 @@
 import {createEntityAdapter, createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store.ts";
-import {createUserApi, fetchUsersApi} from "./userApi.ts";
+import {createUserApi, fetchUserByIdApi, fetchUsersApi} from "./userApi.ts";
 import {NewUser, User} from "./user.ts";
 import {Status, STATUS} from "../../common/constant/status.ts";
 import {createAppAsyncThunk} from "../../app/withTypes.ts";
@@ -35,9 +35,16 @@ const usersSlice = createSlice({
                 state.status = STATUS.LOADING;
             })
             .addCase(fetchUsers.fulfilled, (state, action) => {
-                usersAdapter.setAll(state, action.payload.users);
-                state.count = action.payload.count;
-                state.pagination = action.payload.pagination;
+                usersAdapter.setAll(state, action.payload.data.users);
+                state.count = action.payload.data.count;
+                state.pagination = action.payload.data.pagination;
+                state.status = STATUS.IDLE;
+            })
+            .addCase(fetchUserById.pending, (state) => {
+                state.status = STATUS.LOADING;
+            })
+            .addCase(fetchUserById.fulfilled, (state, action) => {
+                usersAdapter.setOne(state, action.payload.data.user);
                 state.status = STATUS.IDLE;
             })
             .addCase(saveNewUser.fulfilled, usersAdapter.addOne)
@@ -48,10 +55,19 @@ const usersSlice = createSlice({
 export const fetchUsers = createAppAsyncThunk(
     "users/fetchUsers",
     async () => {
-        const response = await fetchUsersApi();
-        return response.data;
+        return await fetchUsersApi();
     }
 );
+
+export const fetchUserById = createAppAsyncThunk(
+    "users/fetchUserById",
+    async (id: number) => {
+        const response = await fetchUserByIdApi(id);
+        console.log(response);
+        console.log(response.data.user);
+        return response;
+    }
+)
 
 /**
  * 새로 생성된 User 를 엔터티에 추가하기 위해서는 서버에서 새로 생선된 User 정보를 응답받으면 좋다.
@@ -59,8 +75,7 @@ export const fetchUsers = createAppAsyncThunk(
 export const saveNewUser = createAppAsyncThunk(
     "users/saveNewUser",
     async (initialUser: NewUser) => {
-        const response = await createUserApi(initialUser);
-        return response.data; // {id, nickName, ... }
+        return await createUserApi(initialUser);
     }
 );
 
