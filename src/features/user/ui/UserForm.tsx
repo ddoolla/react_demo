@@ -26,10 +26,13 @@ const UserForm = () => {
         });
     }
 
-    const onClickSubmitButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const onClickSubmitButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        dispatch(saveNewUser(input));
-        nav("/user/list", {replace: true});
+        await dispatch(saveNewUser(input));
+        nav("/user/list", {
+            replace: true,
+            state: {message: "Create Success"}
+        });
     }
 
     return (

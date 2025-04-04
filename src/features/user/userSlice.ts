@@ -1,6 +1,6 @@
 import {createEntityAdapter, createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store.ts";
-import {createUserApi, fetchUserByIdApi, fetchUsersApi, updateUserApi} from "./userApi.ts";
+import {createUserApi, deleteUserApi, fetchUserByIdApi, fetchUsersApi, updateUserApi} from "./userApi.ts";
 import {EditUser, NewUser, User} from "./user.ts";
 import {Status, STATUS} from "../../common/constant/status.ts";
 import {createAppAsyncThunk} from "../../app/withTypes.ts";
@@ -31,6 +31,7 @@ const usersSlice = createSlice({
     },
     extraReducers: builder =>  {
         builder
+            /* fetchUsers */
             .addCase(fetchUsers.pending, (state) => {
                 state.status = STATUS.LOADING;
             })
@@ -40,6 +41,7 @@ const usersSlice = createSlice({
                 state.pagination = action.payload.data.pagination;
                 state.status = STATUS.IDLE;
             })
+            /* fetchUserById */
             .addCase(fetchUserById.pending, (state) => {
                 state.status = STATUS.LOADING;
             })
@@ -50,8 +52,15 @@ const usersSlice = createSlice({
             .addCase(fetchUserById.rejected, (state) => {
                 state.status = STATUS.ERROR;
             })
+            /* saveNewUser */
             .addCase(saveNewUser.fulfilled, usersAdapter.addOne)
+            /* updateUser */
             .addCase(updateUser.fulfilled, usersAdapter.updateOne)
+            /* deleteUser */
+            .addCase(deleteUser.pending, state => {
+                state.status = STATUS.LOADING;
+            })
+            .addCase(deleteUser.fulfilled, usersAdapter.removeOne)
     }
 });
 
@@ -86,6 +95,13 @@ export const updateUser = createAppAsyncThunk(
       return await updateUserApi(id, updateData);
   }
 );
+
+export const deleteUser = createAppAsyncThunk(
+    "users/deleteUser",
+    async (id: number) => {
+        return await deleteUserApi(id);
+    }
+)
 
 /* Selectors */
 export const {

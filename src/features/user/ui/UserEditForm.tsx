@@ -38,10 +38,10 @@ const UserEditForm = ({curUser, status}: UserEditFormParams) => {
             [name]: value
         });
     }
-    const onClickSubmitButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const onClickSubmitButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         const userId = curUser.id;
-        dispatch(updateUser({id: userId, updateData: input!}));
+        await dispatch(updateUser({id: userId, updateData: input!}));
         nav(`/user/${userId}`, {replace: true});
     }
 

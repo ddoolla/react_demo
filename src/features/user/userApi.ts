@@ -20,3 +20,8 @@ export const updateUserApi = async (id: number, updateData: EditUser) => {
     const response = await axiosInstance.put(`/users/${id}`, updateData);
     return response.data;
 }
+
+export const deleteUserApi = async (id: number)=> {
+    const response = await axiosInstance.delete(`/users/${id}`);
+    return response.data;
+}
