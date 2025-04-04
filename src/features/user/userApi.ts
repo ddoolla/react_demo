@@ -1,5 +1,5 @@
 import axiosInstance from "../../app/config/axiosConfig.ts";
-import {NewUser} from "./user.ts";
+import {EditUser, NewUser} from "./user.ts";
 
 export const fetchUsersApi = async () => {
     const response = await axiosInstance.get("/users");
@@ -12,6 +12,11 @@ export const fetchUserByIdApi = async (id: number) => {
 }
 
 export const createUserApi = async (initialUser: NewUser) => {
-    const response = await axiosInstance.post("/users", initialUser)
+    const response = await axiosInstance.post("/users", initialUser);
+    return response.data;
+}
+
+export const updateUserApi = async (id: number, updateData: EditUser) => {
+    const response = await axiosInstance.put(`/users/${id}`, updateData);
     return response.data;
 }

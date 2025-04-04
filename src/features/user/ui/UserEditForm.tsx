@@ -1,20 +1,33 @@
 import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {EditUser, User} from "../user.ts";
 import {GENDER} from "../../../common/constant/gender.ts";
-import {NewUser} from "../user.ts";
+import {STATUS, Status} from "../../../common/constant/status.ts";
 import {useAppDispatch} from "../../../app/withTypes.ts";
-import {saveNewUser} from "../userSlice.ts";
-import {useState} from "react";
+import {updateUser} from "../userSlice.ts";
 
-const UserForm = () => {
+interface UserEditFormParams {
+    curUser: User;
+    status: Status;
+}
+
+const UserEditForm = ({curUser, status}: UserEditFormParams) => {
     const nav = useNavigate();
     const dispatch = useAppDispatch();
-    const [input, setInput] = useState<NewUser>({
-        nickName: "",
-        password: "",
-        name: "",
-        gender: GENDER.MALE,
-        hobby: ""
-    });
+    const [input, setInput] = useState<EditUser | null>(null);
+
+    /**
+     * UserEditPage 에서 useUser 훅에서 마운트 시 데이터를 가져오기 때문에
+     * 데이터를 가져오기 전까지 curUser 는 undefined 값이기 때문에 useEffect 내에서 초기화 처리
+     */
+    useEffect(() => {
+        if (curUser) {
+            setInput({
+                password: "",
+                ...curUser
+            })
+        }
+    }, [curUser]);
 
     const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.name;
@@ -25,29 +38,34 @@ const UserForm = () => {
             [name]: value
         });
     }
-
     const onClickSubmitButton = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        dispatch(saveNewUser(input));
-        nav("/user/list", {replace: true});
+        const userId = curUser.id;
+        dispatch(updateUser({id: userId, updateData: input!}));
+        nav(`/user/${userId}`, {replace: true});
+    }
+
+    if (!curUser) {
+        return <div>User Not Found</div>
+    }
+
+    if (!input || status === STATUS.LOADING) {
+        return <div>Loading...</div>
     }
 
     return (
         <div>
-            <h3>User Create Form</h3>
+            <h3>User Edit Form</h3>
             <div>
                 <form method="POST">
                     <div>
-                        nickName:
-                        <input type="text" name="nickName" value={input.nickName}
-                               autoComplete={"username"}
-                               onChange={onChangeInput}/>
+                        nickName: {curUser.nickName}
                     </div>
                     <div>
                         password:
                         <input type="password" name="password" value={input.password}
-                               autoComplete={"current-password"}
-                               onChange={onChangeInput}/>
+                               onChange={onChangeInput}
+                               autoComplete="current-password"/>
                     </div>
                     <div>
                         name:
@@ -73,7 +91,7 @@ const UserForm = () => {
                                onChange={onChangeInput}/>
                     </div>
                     <div>
-                        <button onClick={onClickSubmitButton}>submit</button>
+                        <button onClick={onClickSubmitButton}>edit</button>
                     </div>
                 </form>
             </div>
@@ -81,4 +99,4 @@ const UserForm = () => {
     )
 }
 
-export default UserForm;
+export default UserEditForm;

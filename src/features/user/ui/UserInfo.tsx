@@ -1,27 +1,19 @@
-import {useAppDispatch, useAppSelector} from "../../../app/withTypes.ts";
-import {fetchUserById, selectUserById} from "../userSlice.ts";
-import {STATUS} from "../../../common/constant/status.ts";
-import {useEffect} from "react";
+import {Status, STATUS} from "../../../common/constant/status.ts";
+import {User} from "../user.ts";
 
 interface UserInfoProps {
-    id: number;
+    user: User;
+    status: Status;
 }
 
-const UserInfo = ({ id }: UserInfoProps) => {
-    const user = useAppSelector(state => selectUserById(state, id));
-    const status = useAppSelector(state => state.users.status)
+const UserInfo = ({ user, status }: UserInfoProps) => {
 
-    const dispatch = useAppDispatch();
-    useEffect(() => {
-        dispatch(fetchUserById(id));
-    }, [dispatch, id]);
+    if (!user) {
+        return <div>User Not Found</div>
+    }
 
     if (status === STATUS.LOADING) {
         return <div>loading...</div>
-    }
-
-    if (status === STATUS.ERROR) {
-        return <div>User Data Not Found</div>
     }
 
     return (

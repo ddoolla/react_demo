@@ -1,7 +1,7 @@
 import {createEntityAdapter, createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store.ts";
-import {createUserApi, fetchUserByIdApi, fetchUsersApi} from "./userApi.ts";
-import {NewUser, User} from "./user.ts";
+import {createUserApi, fetchUserByIdApi, fetchUsersApi, updateUserApi} from "./userApi.ts";
+import {EditUser, NewUser, User} from "./user.ts";
 import {Status, STATUS} from "../../common/constant/status.ts";
 import {createAppAsyncThunk} from "../../app/withTypes.ts";
 import {Pagination} from "../../common/types/pagination.ts";
@@ -51,6 +51,7 @@ const usersSlice = createSlice({
                 state.status = STATUS.ERROR;
             })
             .addCase(saveNewUser.fulfilled, usersAdapter.addOne)
+            .addCase(updateUser.fulfilled, usersAdapter.updateOne)
     }
 });
 
@@ -77,6 +78,13 @@ export const saveNewUser = createAppAsyncThunk(
     async (initialUser: NewUser) => {
         return await createUserApi(initialUser);
     }
+);
+
+export const updateUser = createAppAsyncThunk(
+  "users/updateUser",
+  async ({id, updateData}: {id: number; updateData: EditUser;}) => {
+      return await updateUserApi(id, updateData);
+  }
 );
 
 /* Selectors */

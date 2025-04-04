@@ -10,9 +10,16 @@ export interface User {
 }
 
 export interface NewUser {
-    nickName: string;
-    password: string;
-    name: string;
-    gender: Gender;
-    hobby: string;
+    nickName?: string;
+    password?: string;
+    name?: string;
+    gender?: Gender;
+    hobby?: string | undefined;
+}
+
+export interface EditUser {
+    password?: string;
+    name?: string;
+    gender?: Gender;
+    hobby?: string | undefined;
 }
