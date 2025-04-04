@@ -11,10 +11,20 @@ const UserListPage = () => {
         dispatch(fetchUsers())
     }, [dispatch]);
 
-    return <div>
-        <h2>User List</h2>
-        <UserList />
-    </div>
+    return (
+        <div>
+            <h2>User List</h2>
+            <div>
+                <button onClick={() => nav("/")}>
+                    Home
+                </button>&nbsp;
+                <button onClick={() => nav("/user/form")}>
+                    Form
+                </button>
+            </div>
+            <UserList/>
+        </div>
+    )
 }
 
 export default UserListPage;

@@ -1,13 +1,13 @@
 import '../App.css'
 import {Routes, Route} from "react-router-dom";
 import Home from "../pages/Home.tsx";
-import UserPages from "../pages/user/UserPages.tsx";
+import UserRoutes from "../pages/user/UserRoutes.tsx";
 
 function App() {
   return (
       <Routes>
           <Route path={"/"} element={<Home />} />
-          <Route path={"/user/*"} element={<UserPages />} />
+          <Route path={"/user/*"} element={<UserRoutes />} />
       </Routes>
   )
 }

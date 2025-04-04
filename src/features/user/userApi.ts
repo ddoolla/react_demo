@@ -7,7 +7,7 @@ export const fetchUsersApi = async () => {
 }
 
 export const fetchUserByIdApi = async (id: number) => {
-    const response = await axiosInstance.get(`/users/${id}`);
+    const response = await axiosInstance.get(`/users/${id}`)
     return response.data;
 }
 

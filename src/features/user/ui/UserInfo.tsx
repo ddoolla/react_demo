@@ -11,13 +11,17 @@ const UserInfo = ({ id }: UserInfoProps) => {
     const user = useAppSelector(state => selectUserById(state, id));
     const status = useAppSelector(state => state.users.status)
 
-    // const dispatch = useAppDispatch();
-    // useEffect(() => {
-    //     dispatch(fetchUserById(id));
-    // }, [dispatch]);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(fetchUserById(id));
+    }, [dispatch, id]);
 
     if (status === STATUS.LOADING) {
         return <div>loading...</div>
+    }
+
+    if (status === STATUS.ERROR) {
+        return <div>User Data Not Found</div>
     }
 
     return (

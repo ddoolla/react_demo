@@ -1,7 +1,7 @@
 import {useNavigate, useParams} from "react-router-dom";
 import UserInfo from "../../features/user/ui/UserInfo.tsx";
 
-const UserDetailPage = () => {
+const UserPage = () => {
     const nav = useNavigate();
     const params = useParams();
 
@@ -11,6 +11,12 @@ const UserDetailPage = () => {
             <div>
                 <button onClick={() => nav("/user/list")}>
                     list
+                </button>&nbsp;
+                <button onClick={() => nav("/user/list")}>
+                    edit
+                </button>&nbsp;
+                <button onClick={() => nav("/user/list")}>
+                    delete
                 </button>
             </div>
             <div>
@@ -20,4 +26,4 @@ const UserDetailPage = () => {
     )
 };
 
-export default UserDetailPage;
+export default UserPage;

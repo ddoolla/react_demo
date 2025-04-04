@@ -19,14 +19,6 @@ const UserList = () => {
 
     return (
         <div>
-            <div>
-                <button onClick={() => nav("/")}>
-                    Home
-                </button>
-                <button onClick={() => nav("/user/form")}>
-                    Form
-                </button>
-            </div>
             <div>{listItems}</div>
         </div>
     )

@@ -28,7 +28,8 @@ const UserForm = () => {
         });
     }
 
-    const onClickSubmitButton = () => {
+    const onClickSubmitButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
         dispatch(saveNewUser(input));
         nav("/user/list", {replace: true});
     }
@@ -42,7 +43,7 @@ const UserForm = () => {
                 </button>
             </div>
             <div>
-                <form>
+                <form method="POST">
                     <div>
                         nickName:
                         <input type="text" name="nickName" value={input.nickName}

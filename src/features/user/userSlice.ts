@@ -44,8 +44,11 @@ const usersSlice = createSlice({
                 state.status = STATUS.LOADING;
             })
             .addCase(fetchUserById.fulfilled, (state, action) => {
-                usersAdapter.setOne(state, action.payload.data.user);
+                usersAdapter.setOne(state, action.payload.data);
                 state.status = STATUS.IDLE;
+            })
+            .addCase(fetchUserById.rejected, (state) => {
+                state.status = STATUS.ERROR;
             })
             .addCase(saveNewUser.fulfilled, usersAdapter.addOne)
     }
@@ -62,10 +65,7 @@ export const fetchUsers = createAppAsyncThunk(
 export const fetchUserById = createAppAsyncThunk(
     "users/fetchUserById",
     async (id: number) => {
-        const response = await fetchUserByIdApi(id);
-        console.log(response);
-        console.log(response.data.user);
-        return response;
+        return await fetchUserByIdApi(id);
     }
 )
 
