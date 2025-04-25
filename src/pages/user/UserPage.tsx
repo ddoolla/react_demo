@@ -29,7 +29,7 @@ const UserPage = () => {
                 <button onClick={() => nav("/user/list")}>
                     list
                 </button>&nbsp;
-                <button onClick={() => nav(`/user/edit/${userId}`)}>
+                <button onClick={() => nav(`/user/${userId}/edit`)}>
                     edit
                 </button>&nbsp;
                 <button onClick={onClickDeleteButton}>

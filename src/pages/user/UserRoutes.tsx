@@ -10,7 +10,7 @@ const UserRoutes = () => {
             <Route path={"list"} element={<UserListPage />} />
             <Route path={":id"} element={<UserPage />} />
             <Route path={"form"} element={<UserCreatePage />} />
-            <Route path={"edit/:id"} element={<UserEditPage />} />
+            <Route path={":id/edit"} element={<UserEditPage />} />
         </Routes>
     )
 }

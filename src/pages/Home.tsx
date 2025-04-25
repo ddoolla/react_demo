@@ -8,6 +8,9 @@ const Home = () => {
             <h2>Home</h2>
             <button onClick={() => nav("/user/list")}>
                 User List
+            </button>&nbsp;
+            <button onClick={() => nav("/mui/test")}>
+                MUI test
             </button>
         </div>
     )
