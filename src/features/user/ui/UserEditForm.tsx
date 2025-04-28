@@ -42,7 +42,7 @@ const UserEditForm = ({curUser, status}: UserEditFormParams) => {
         e.preventDefault();
         const userId = curUser.id;
         await dispatch(updateUser({id: userId, updateData: input!}));
-        nav(`/user/${userId}`, {replace: true});
+        nav(`/users/${userId}`, {replace: true});
     }
 
     if (!curUser) {

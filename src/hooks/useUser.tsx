@@ -23,7 +23,7 @@ const useUser = (userId: number) => {
     useEffect(() => {
         if (status === STATUS.ERROR) {
             window.alert(`User Not Found ${userId}`);
-            nav("/user/list", {replace: true});
+            nav("/users", {replace: true});
         }
     }, [nav, status, userId]);
 

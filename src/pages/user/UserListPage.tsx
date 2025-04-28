@@ -28,7 +28,7 @@ const UserListPage = () => {
                 <button onClick={() => nav("/")}>
                     Home
                 </button>&nbsp;
-                <button onClick={() => nav("/user/form")}>
+                <button onClick={() => nav("/users/form")}>
                     Form
                 </button>
             </div>

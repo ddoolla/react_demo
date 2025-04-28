@@ -1,6 +1,6 @@
 import {Routes, Route} from "react-router-dom";
-import MuiTestPage from "./MuiTestPage.tsx";
-import BoxPage from "./layout/BoxPage.tsx";
+import MuiTestPage from "../pages/mui-test/MuiTestPage.tsx";
+import BoxPage from "../pages/mui-test/layout/BoxPage.tsx";
 
 const MuiRoutes = () => {
     return (

@@ -8,7 +8,7 @@ const UserCreatePage = () => {
         <div>
             <h2>New User</h2>
             <div>
-                <button onClick={() => nav("/user/list")}>
+                <button onClick={() => nav("/users")}>
                     List
                 </button>
             </div>

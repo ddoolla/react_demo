@@ -15,9 +15,9 @@ const UserPage = () => {
         if (window.confirm("Delete User?")) {
             try {
                 await dispatch(deleteUser(userId)).unwrap();
-                nav("/user/list", {state: {message: "Delete Success"}});
+                nav("/users", {state: {message: "Delete Success"}});
             } catch (error) {
-                nav("/user/list", {state: {message: "Delete Fail"}});
+                nav("/users", {state: {message: "Delete Fail"}});
             }
         }
     }
@@ -26,10 +26,10 @@ const UserPage = () => {
         <div>
             <h2>UserDetail - {params.id}</h2>
             <div>
-                <button onClick={() => nav("/user/list")}>
+                <button onClick={() => nav("/users")}>
                     list
                 </button>&nbsp;
-                <button onClick={() => nav(`/user/${userId}/edit`)}>
+                <button onClick={() => nav(`/users/${userId}/edit`)}>
                     edit
                 </button>&nbsp;
                 <button onClick={onClickDeleteButton}>

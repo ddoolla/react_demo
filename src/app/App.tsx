@@ -1,16 +1,9 @@
-import '../App.css'
-import {Routes, Route} from "react-router-dom";
-import Home from "../pages/Home.tsx";
-import UserRoutes from "../pages/user/UserRoutes.tsx";
-import MuiRoutes from "../pages/mui-test/MuiRoutes.tsx";
+import './App.css'
+import AppRoutes from "../routes/AppRoutes.tsx";
 
 function App() {
   return (
-      <Routes>
-          <Route path={"/"} element={<Home />} />
-          <Route path={"/user/*"} element={<UserRoutes />} />
-          <Route path={"/mui/*"} element={<MuiRoutes />} />
-      </Routes>
+      <AppRoutes />
   )
 }
 
