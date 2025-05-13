@@ -1,23 +1,14 @@
-import {useNavigate} from "react-router-dom";
+import BasicButton from "../components/button/BasicButton.tsx";
 
 const Home = () => {
-    const nav = useNavigate();
-
     return (
         <div>
             <h2>Home</h2>
-            <button onClick={() => nav("/users")}>
-                User List
-            </button>&nbsp;
-            <button onClick={() => nav("/mui/test")}>
-                MUI test
-            </button>&nbsp;
-            <button onClick={() => nav("/react-hook-form/test")}>
-                react-hook-form test
-            </button>&nbsp;
-            <button onClick={() => nav("/react-hook-form-mui/test")}>
-                react-hook-form-mui test
-            </button>
+            <div style={{display: 'flex', gap: 10}}>
+                <BasicButton text={'User List'} url={'/users'} />
+                <BasicButton text={'MUI Home'} url={'/mui/home'} />
+                <BasicButton text={'react-hook-form Home'} url={'/react-hook-form/home'} />
+            </div>
         </div>
     )
 }
