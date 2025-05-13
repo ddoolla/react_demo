@@ -6,9 +6,10 @@ interface TitleHeaderProps {
 
 const TitleHeader = ({title}: TitleHeaderProps) => {
     return (
-        <div>
+        <div style={{marginBottom: '10px'}}>
             <h3>{title}</h3>
             <BackButton/>
+            <hr/>
         </div>
     )
 }

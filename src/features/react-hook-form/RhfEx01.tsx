@@ -26,7 +26,7 @@ const RhfEx01 = () => {
                 {/* handleSubmit 이 onSubmit 을 호출하여 Inputs 를 검증 */}
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
-                        {/* register 함수를 호출하여 훅에 등록 */}
+                        {/* input 필드를 register 함수를 호출하여 훅에 등록 */}
                         <input defaultValue="test" {...register("example")} />
                     </div>
                     <div>

@@ -1,15 +1,13 @@
-import {useNavigate} from "react-router-dom";
 import TitleHeader from "../../components/TitleHeader.tsx";
+import BasicButton from "../../components/button/BasicButton.tsx";
 
 const RhfTestPage = () => {
-    const nav = useNavigate();
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', gap: 2}}>
             <TitleHeader title={"react-hook-form test"}/>
-            <div>
-                <button onClick={() => nav('/react-hook-form/ex01')}>ex01</button>
-            </div>
+            <BasicButton text={'ex01'} url={'/react-hook-form/ex01'} />
+            <BasicButton text={'ex02'} url={'/react-hook-form/ex02'} />
         </div>
     )
 }

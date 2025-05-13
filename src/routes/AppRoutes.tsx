@@ -10,6 +10,7 @@ import RhfEx01 from "../features/react-hook-form/RhfEx01.tsx";
 import RhfmEx01 from "../features/react-hook-form-mui/RhfmEx01.tsx";
 import RhfTestPage from "../pages/react-hook-form/RhfTestPage.tsx";
 import RhfmTestPage from "../pages/react-hook-form-mui/RhfmTestPage.tsx";
+import RhfEx02 from "../features/react-hook-form/RhfEx02.tsx";
 
 const AppRoutes = () => {
     return (
@@ -31,6 +32,7 @@ const AppRoutes = () => {
             <Route path={"react-hook-form"}>
                 <Route path={"test"} element={<RhfTestPage />} />
                 <Route path={"ex01"} element={<RhfEx01 />} />
+                <Route path={"ex02"} element={<RhfEx02 />} />
             </Route>
 
             <Route path={"react-hook-form-mui"}>
