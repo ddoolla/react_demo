@@ -12,6 +12,8 @@ import {SubmitHandler, useForm} from "react-hook-form";
  * maxLength
  * pattern
  * validate
+ *
+ * 나머지 https://react-hook-form.com/docs/useform/register 참조
  */
 
 interface IFormInput {
