@@ -59,6 +59,14 @@ const RhfEx11 = () => {
                         >
                             Trigger Async First Name Validation
                         </button>
+                        <button
+                            type="button"
+                            onClick={async () => {
+                                console.log("All", await trigger());
+                            }}
+                        >
+                            Trigger Async All Validation
+                        </button>
                     </div>
 
                 </form>
