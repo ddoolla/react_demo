@@ -19,6 +19,7 @@ import RhfExPage from "../pages/react-hook-form-ex/RhfExPage.tsx";
 import MuiExPage from "../pages/mui-ex/MuiExPage.tsx";
 import RhfEx09 from "../features/react-hook-form/RhfEx09.tsx";
 import RhfEx10 from "../features/react-hook-form/RhfEx10.tsx";
+import RhfEx11 from "../features/react-hook-form/RhfEx11.tsx";
 
 /**
  * 중첩 Route 쓸라면 상위 컴포넌트에 Outlet 있어야 함.
@@ -56,6 +57,7 @@ const AppRoutes = () => {
                     <Route path={"ex08"} element={<RhfEx08 />} />
                     <Route path={"ex09"} element={<RhfEx09 />} />
                     <Route path={"ex10"} element={<RhfEx10 />} />
+                    <Route path={"ex11"} element={<RhfEx11 />} />
                 </Route>
             </Route>
 
