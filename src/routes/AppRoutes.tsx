@@ -5,21 +5,21 @@ import UserPage from "../pages/user/UserPage.tsx";
 import UserCreatePage from "../pages/user/UserCreatePage.tsx";
 import UserEditPage from "../pages/user/UserEditPage.tsx";
 import MuiHomePage from "../pages/mui-ex/MuiHomePage.tsx";
-import BoxEx from "../features/mui/layout/BoxEx.tsx";
-import RhfEx01 from "../features/react-hook-form/RhfEx01.tsx";
+import BoxEx from "../features/ex-mui/layout/BoxEx.tsx";
+import RhfEx01 from "../features/ex-react-hook-form/RhfEx01.tsx";
 import RhfHomePage from "../pages/react-hook-form-ex/RhfHomePage.tsx";
-import RhfEx02 from "../features/react-hook-form/RhfEx02.tsx";
-import RhfEx03 from "../features/react-hook-form/RhfEx03.tsx";
-import RhfEx04 from "../features/react-hook-form/RhfEx04.tsx";
-import RhfEx05 from "../features/react-hook-form/RhfEx05.tsx";
-import RhfEx06 from "../features/react-hook-form/RhfEx06.tsx";
-import RhfEx07 from "../features/react-hook-form/RhfEx07.tsx";
-import RhfEx08 from "../features/react-hook-form/RhfEx08.tsx";
+import RhfEx02 from "../features/ex-react-hook-form/RhfEx02.tsx";
+import RhfEx03 from "../features/ex-react-hook-form/RhfEx03.tsx";
+import RhfEx04 from "../features/ex-react-hook-form/RhfEx04.tsx";
+import RhfEx05 from "../features/ex-react-hook-form/RhfEx05.tsx";
+import RhfEx06 from "../features/ex-react-hook-form/RhfEx06.tsx";
+import RhfEx07 from "../features/ex-react-hook-form/RhfEx07.tsx";
+import RhfEx08 from "../features/ex-react-hook-form/RhfEx08.tsx";
 import RhfExPage from "../pages/react-hook-form-ex/RhfExPage.tsx";
 import MuiExPage from "../pages/mui-ex/MuiExPage.tsx";
-import RhfEx09 from "../features/react-hook-form/RhfEx09.tsx";
-import RhfEx10 from "../features/react-hook-form/RhfEx10.tsx";
-import RhfEx11 from "../features/react-hook-form/RhfEx11.tsx";
+import RhfEx09 from "../features/ex-react-hook-form/RhfEx09.tsx";
+import RhfEx10 from "../features/ex-react-hook-form/RhfEx10.tsx";
+import RhfEx11 from "../features/ex-react-hook-form/RhfEx11.tsx";
 
 /**
  * 중첩 Route 쓸라면 상위 컴포넌트에 Outlet 있어야 함.
