@@ -5,8 +5,9 @@ import {SubmitHandler, useForm} from "react-hook-form";
  * 필드 등록
  * 1. form 인터페이스 정의
  * 2. useForm 훅을 호출하여 register, handleSubmit 을 가져옴
- * 3. 서브밋 함수(onSubmit)를 SubmitHandler 타입으로 정의
- * 4. form - onSubmit 에 handleSubmit(onSubmit) 설정한다.
+ * 3. handleSubmit 에 전달할 서브밋 콜백 함수 정의 (onSubmit)
+ *    -> 매개변수 타입을 SubmitHandler<IFormInput> 또는 직접 data: IFormInput 으로 정의
+ * 4. form - onSubmit 이벤트에 handleSubmit(onSubmit) 설정한다.
  *    제출 시 handleSubmit 이 onSubmit 을 호출하여 form 인터페이스에 정의된
  *    input 타입들을 검증한다.
  * 5. input 필드에 register 을 등록한다

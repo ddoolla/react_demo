@@ -15,6 +15,7 @@ const RhfHomePage = () => {
             <Menu text={'ex07'} url={'/react-hook-form/ex/ex07'} title={'useController 훅 사용 예제'} />
             <Menu text={'ex08'} url={'/react-hook-form/ex/ex08'} title={'에러 처리 예제'} />
             <Menu text={'ex09'} url={'/react-hook-form/ex/ex09'} title={'useFieldArray 예제'} />
+            <Menu text={'ex10'} url={'/react-hook-form/ex/ex10'} title={'useFormContext 예제'} />
         </div>
     )
 }
