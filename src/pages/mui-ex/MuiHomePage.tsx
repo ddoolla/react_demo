@@ -11,6 +11,7 @@ const MuiHomePage = () => {
                 <Menu text={'Box'} url={'/mui/ex/layout/box'} title={'Box'} />
                 <h3>Feedback</h3>
                 <Menu text={'Dialog'} url={'/mui/ex/feedback/dialog'} title={'Dialog'} />
+                <Menu text={'Snackbar'} url={'/mui/ex/feedback/snackbar'} title={'Snackbar'} />
             </div>
         </div>
     )
