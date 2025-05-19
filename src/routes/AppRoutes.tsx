@@ -20,6 +20,7 @@ import MuiExPage from "../pages/mui-ex/MuiExPage.tsx";
 import RhfEx09 from "../features/ex-react-hook-form/RhfEx09.tsx";
 import RhfEx10 from "../features/ex-react-hook-form/RhfEx10.tsx";
 import RhfEx11 from "../features/ex-react-hook-form/RhfEx11.tsx";
+import DialogEx from "../features/ex-mui/feedback/DialogEx.tsx";
 
 /**
  * 중첩 Route 쓸라면 상위 컴포넌트에 Outlet 있어야 함.
@@ -41,6 +42,7 @@ const AppRoutes = () => {
                 <Route path={"home"} element={<MuiHomePage />} />
                 <Route path={"ex"} element={<MuiExPage />} >
                     <Route path={"layout/box"} element={<BoxEx />} />
+                    <Route path={"feedback/dialog"} element={<DialogEx />} />
                 </Route>
             </Route>
 
