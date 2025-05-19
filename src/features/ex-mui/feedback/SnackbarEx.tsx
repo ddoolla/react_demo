@@ -33,7 +33,7 @@ const SnackbarEx = () => {
                 >
                     <Alert
                         onClose={handleClose}
-                        security="success"
+                        severity="success"
                         variant="filled"
                     >
                         success alert
